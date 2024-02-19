@@ -290,9 +290,19 @@ void setup() {
   // level events.
   buttonConfig.setEventHandler(handleEvent);
   buttonConfig.setFeature(ButtonConfig::kFeatureClick);
-  buttonConfig.setFeature(ButtonConfig::kFeatureDoubleClick);
   buttonConfig.setFeature(ButtonConfig::kFeatureLongPress);
-  buttonConfig.setFeature(ButtonConfig::kFeatureRepeatPress);
+  // buttonConfig.setFeature(ButtonConfig::kFeatureDoubleClick);
+  // buttonConfig.setFeature(ButtonConfig::kFeatureRepeatPress);
+
+  // Ready digitpot, set wiper to no button
+  pinMode(digipotWiperPin, OUTPUT);
+  SPI.begin();
+  digitalWrite(digipotWiperPin, LOW);
+  SPI.transfer(digipotWiperTip); // command
+  SPI.transfer(digipotDefaultValue); // value
+  SPI.transfer(digipotWiperRing); // command
+  SPI.transfer(255); // float the ring circuit
+  digitalWrite(digipotWiperPin, HIGH);
 
   Serial.println(F("setup(): ready"));
 }
