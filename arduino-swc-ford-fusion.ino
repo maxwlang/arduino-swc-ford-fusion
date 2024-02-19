@@ -84,6 +84,9 @@ class LadderButtonConfig : public ace_button::LadderButtonConfig {
         return altExtractIndex(NUM_LEVELS, LEVELS, level);
     }
 
+    // Calculating a level based off a known voltage and resistor value gives
+    // us numbers that match the Fusion 2012 diagram values. These are easier
+    // to measure as there is a wider range of values between the buttons.
     uint16_t calculateLevel(uint16_t raw) const {
         int vin = 5; // Using 5V through the known 10k resistor
         float vOut = 0;
