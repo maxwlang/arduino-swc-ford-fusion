@@ -192,77 +192,68 @@ void handleEvent(AceButton* button, uint8_t eventType, uint8_t buttonState) {
   Serial.print(F("; buttonState: "));
   Serial.println(buttonState);
 
-//   switch (eventType) {
-//     case AceButton::kEventPressed:
-//       Serial.println("BIG BIG");
-//       break;
-//     case AceButton::kEventReleased:
-//       Serial.println("SMALL SMALL");
-//       break;
-//   }
-
-    switch (button->getPin()) {
-      case 0:
-        if (eventType == AceButton::kEventPressed) {
-          Serial.println("Volume - (Press)");
-          wrTip(55, 50); // 24kOhm
-        } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventLongPressed) {
-          Serial.println("Volume - (Hold)");
-          wrTipHold(55); // 24kOhm
-        } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventReleased) {
-          Serial.println("Volume - (Release)");
+  switch (button->getPin()) {
+    case 0:
+      if (eventType == AceButton::kEventPressed) {
+        Serial.println("Volume - (Press)");
+        wrTip(55, 50); // 24kOhm
+      } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventLongPressed) {
+        Serial.println("Volume - (Hold)");
+        wrTipHold(55); // 24kOhm
+      } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventReleased) {
+        Serial.println("Volume - (Release)");
+        wrTipRelease();
+      }
+      break;
+    case 1:
+      if (eventType == AceButton::kEventPressed) {
+        Serial.println("Volume + (Press)");
+        wrTip(42, 50); // 16kOhm
+      } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventLongPressed) {
+        Serial.println("Volume + (Hold)");
+        wrTipHold(42); // 16kOhm
+      } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventReleased) {
+        Serial.println("Volume + (Release)");
+        wrTipRelease();
+      }
+      break;
+    case 2:
+      if (eventType == AceButton::kEventPressed) {
+          Serial.println("Seek + (Press)");
+          wrTip(19, 50); // 8kOhm
+      } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventLongPressed) {
+          Serial.println("Seek + (Hold)");
+          wrTipHold(19); // 8kOhm
+      } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventReleased) {
+          Serial.println("Seek + (Release)");
           wrTipRelease();
-        }
-        break;
-      case 1:
-        if (eventType == AceButton::kEventPressed) {
-          Serial.println("Volume + (Press)");
-          wrTip(42, 50); // 16kOhm
-        } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventLongPressed) {
-          Serial.println("Volume + (Hold)");
-          wrTipHold(42); // 16kOhm
-        } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventReleased) {
-          Serial.println("Volume + (Release)");
+      }
+      break;
+    case 3:
+      if (eventType == AceButton::kEventPressed) {
+          Serial.println("Seek - (Press)");
+          wrTip(27, 50); // 11,25kOhm
+      } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventLongPressed) {
+          Serial.println("Seek - (Hold)");
+          wrTipHold(27); // 11,25kOhm
+      } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventReleased) {
+          Serial.println("Seek - (Release)");
           wrTipRelease();
-        }
-        break;
-      case 2:
-        if (eventType == AceButton::kEventPressed) {
-            Serial.println("Seek + (Press)");
-            wrTip(19, 50); // 8kOhm
-        } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventLongPressed) {
-            Serial.println("Seek + (Hold)");
-            wrTipHold(19); // 8kOhm
-        } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventReleased) {
-            Serial.println("Seek + (Release)");
-            wrTipRelease();
-        }
-        break;
-      case 3:
-        if (eventType == AceButton::kEventPressed) {
-            Serial.println("Seek - (Press)");
-            wrTip(27, 50); // 11,25kOhm
-        } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventLongPressed) {
-            Serial.println("Seek - (Hold)");
-            wrTipHold(27); // 11,25kOhm
-        } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventReleased) {
-            Serial.println("Seek - (Release)");
-            wrTipRelease();
-        }
-        break;
-      case 4:
-        if (eventType == AceButton::kEventPressed) {
-            Serial.println("Source");
-            wrTip(2, 50); // 1.2kOhm
-        } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventLongPressed) {
-            Serial.println("Source (Hold)");
-            wrTipHold(2); // 1.2kOhm
-        } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventReleased) {
-            Serial.println("Source (Release)");
-            wrTipRelease();
-        }
-        break;
-    }
+      }
+      break;
+    case 4:
+      if (eventType == AceButton::kEventPressed) {
+          Serial.println("Source");
+          wrTip(2, 50); // 1.2kOhm
+      } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventLongPressed) {
+          Serial.println("Source (Hold)");
+          wrTipHold(2); // 1.2kOhm
+      } else if (ALLOW_LONG_PRESS && eventType == AceButton::kEventReleased) {
+          Serial.println("Source (Release)");
+          wrTipRelease();
+      }
+      break;
+  }
 }
 
 // On most processors, this should be called every 4-5ms or faster, if the
