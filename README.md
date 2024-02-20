@@ -1,6 +1,8 @@
 # Arduino-SWC-Ford-Fusion
 Adapt the Ford Fusion 2010 to 2012 Car Audio Steering Wheel Control interface to certain aftermarket Pioneer radios using Arduino.
 
+![Example](./Images/example.gif)
+
 ## Images
 ![Image](./Images/Fusion%202012%20SWC%20Wires.png)
 
